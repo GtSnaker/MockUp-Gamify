@@ -22,6 +22,8 @@
       this.load.image('top-banner', 'assets/top-banner.png');
       this.load.image('centro', 'assets/centro.png');
       this.load.image('side', 'assets/banner-side.png');
+      this.load.image('izq', 'assets/izq.png');
+      this.load.image('dcha', 'assets/dcha.png');
 
       this.load.image('sean', 'assets/sean.jpg');
       this.load.image('ivo', 'assets/ivo.jpg');

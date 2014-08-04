@@ -50,14 +50,17 @@
       this.scale1 = 0.65;
 
       this.centro = this.add.sprite(0, 0, 'centro');
+      this.izq = this.add.sprite(-800, 0, 'izq');
+      this.dcha = this.add.sprite(800, 0, 'dcha');
 
       this.bannertop = this.add.sprite(0, 0, 'top-banner');
       this.bannertop.fixedToCamera = true;
 
-      this.bannerleft = this.add.sprite(42.5, 90, 'side');
-      this.bannerright = this.add.sprite(855, 90, 'side');
+      // this.bannerleft = this.add.sprite(42.5, 90, 'side');
+      // this.bannerright = this.add.sprite(530, 90, 'side');
 
-      this.logo = this.add.sprite(1052/2, 20, 'logo');
+      this.logo = this.add.button(368, 20, 'logo', function() {this.izqMove = false; this.dchaMove = false;} , this, 2, 1, 0);
+      //this.logo = this.add.sprite(368, 20, 'logo');
       this.logo.scale.x = this.scale1;
       this.logo.scale.y = this.scale1;
 
@@ -77,8 +80,12 @@
       this.sitio = this.add.sprite(1052/2, 90, 'logo');
       this.sitio.visible = false;
 
-      this.buttonLeft = this.add.sprite(22, 9, 'hit');
-      this.buttonRight = this.add.sprite(1055, 11, 'bars');
+      this.izqMove = false;
+      this.dchaMove = false;
+      this.buttonLeft = this.add.button(22, 9, 'hit', function() {this.izqMove = true; this.dchaMove = false;} , this, 2, 1, 0);
+      this.buttonRight = this.add.button(730, 11, 'bars', function() {this.dchaMove = true; this.izqMove = false;} , this, 2, 1, 0);
+      //this.buttonLeft = this.add.sprite(22, 9, 'hit');
+      //this.buttonRight = this.add.sprite(730, 11, 'bars');
       //this.input.onDown.add(this.onInputDown, this);
     },
 
@@ -88,14 +95,36 @@
       //this.centro.y = this.sitio.y;
   
 
-      if(this.input.keyboard.isDown(Phaser.Keyboard.UP) && this.sitio.y > -340){
-          this.sitio.y -= 10;
-          console.log(this.sitio.y);
+      // if(this.input.keyboard.isDown(Phaser.Keyboard.UP) && this.sitio.y > -340){
+      //     this.sitio.y -= 10;
+      //     console.log(this.sitio.y);
+      // }
+      // else if(this.input.keyboard.isDown(Phaser.Keyboard.DOWN) && this.sitio.y < 90 ){
+      //     this.sitio.y += 10;
+      //     //console.log(this.sitio.y);
+      // }
+      if(this.izqMove) {
+        if(this.izq.x != 0){
+          this.izq.x += 50;
+        }
       }
-      else if(this.input.keyboard.isDown(Phaser.Keyboard.DOWN) && this.sitio.y < 90 ){
-          this.sitio.y += 10;
-          //console.log(this.sitio.y);
+      else {
+        if(this.izq.x != -800){
+          this.izq.x -= 50;
+        }
       }
+
+      if(this.dchaMove) {
+        if(this.dcha.x != 0){
+          this.dcha.x -= 50;
+        }
+      }
+      else {
+        if(this.dcha.x != 800){
+          this.dcha.x += 50;
+        }
+      }
+      //console.log(this.izqMove);
     },
 
     onInputDown: function () {
